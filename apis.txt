@@ -1,0 +1,141 @@
+1. Register admin
+
+method : POST 
+URL example: http://localhost:3000/admin/register
+
+Request :
+body {
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "Password123",
+  "title": "Admin Head",
+  "description": "Handles backend admin tasks"
+}
+
+Response :
+{
+  "message": "Admin registered successfully",
+  "token": "jwt_token_here",
+  "admin": {
+    "id": "64fa6bd9e0a1ad23c95a2b43",
+    "name": "John Doe",
+    "email": "john@example.com"
+  }
+}
+
+
+2. Login Admin
+Methos : POST 
+URL example: http://localhost:3000/admin/login
+
+Request :
+json
+
+body{
+  "email": "john@example.com",
+  "password": "Password123"
+}
+
+Response :
+json
+{
+  "message": "Login successful",
+  "token": "jwt_token_here",
+  "admin": {
+    "id": "64fa6bd9e0a1ad23c95a2b43",
+    "name": "John Doe",
+    "email": "john@example.com"
+  }
+}
+
+
+3.  Get Admin Profile
+Method : GET 
+URL example: http://localhost:3000/admin/get-admin-data
+
+Request :
+Authorization: Bearer jwt_token_here
+
+Response :
+json
+
+{
+  "id": "64fa6bd9e0a1ad23c95a2b43",
+  "name": "John Doe",
+  "title": "Admin Head",
+  "description": "Handles backend admin tasks"
+}
+
+4.Update Admin Info
+Method : PUT 
+URL example: http://localhost:3000/admin/update
+
+Request : 
+json
+Authorization: Bearer jwt_token_here
+body{
+  "name": "John D",
+  "title": "Super Admin",
+  "description": "Updated description"
+}
+
+Response :
+json
+{
+  "message": "Admin updated successfully",
+  "updated": {
+    "_id": "64fa6bd9e0a1ad23c95a2b43",
+    "name": "John D",
+    "email": "john@example.com",
+    "title": "Super Admin",
+    "description": "Updated description",
+    "createdAt": "2024-06-01T08:00:00Z",
+    "updatedAt": "2024-06-01T10:00:00Z"
+  }
+}
+
+5. Change Password
+Method : PUT 
+URL example: http://localhost:3000/admin/change-password
+
+Request :
+json
+
+Authorization: Bearer jwt_token_here
+
+body {
+  "oldPassword": "Password123",
+  "newPassword": "NewSecurePass456"
+}
+
+Response :
+json
+
+{
+  "message": "Password updated successfully"
+}
+
+
+6.Delete Admin
+Method : DELETE 
+URL example: http://localhost:3000/admin/delete
+
+Request :
+json
+
+Authorization: Bearer jwt_token_here
+
+Response :
+json
+
+{
+  "message": "Admin deleted successfully"
+}
+
+
+
+Environment variables 
+
+MONGO_URI = "add mongo uri"
+PORT = 3000
+JWT_SECRET = "add your secret code"
