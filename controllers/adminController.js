@@ -13,12 +13,9 @@ exports.registerAdmin = async (req, res) => {
     // Check if an admin already exists
     const existingAdmins = await Admin.countDocuments();
     if (existingAdmins > 0) {
-      return res
-        .status(403)
-        .json({
-          message:
-            "Admin already exists. Further registrations are not allowed.",
-        });
+      return res.status(403).json({
+        message: "Admin already exists. Further registrations are not allowed.",
+      });
     }
 
     const { name, email, password, title, description } = req.body;
@@ -110,7 +107,7 @@ exports.updateAdmin = async (req, res) => {
     const { name, title, description } = req.body;
 
     const updated = await Admin.findByIdAndUpdate(
-      req.admin._id,  //req.admin._id is comes from adminAuth.js middileware
+      req.admin._id, //req.admin._id is comes from adminAuth.js middileware
       { name, title, description },
       { new: true }
     ).select("-password");

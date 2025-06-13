@@ -1,3 +1,5 @@
+-----------------------admin page URLs------------------
+
 1. Register admin
 
 method : POST 
@@ -133,9 +135,110 @@ json
 }
 
 
+--------------------career page URLs-----------------
+1.create job 
 
-Environment variables 
+Method : POST
+URL example : http://localhost:3000/career/create-job 
 
-MONGO_URI = "add mongo uri"
+Request : 
+json 
+
+Authorization : Bearer jwt_token_here 
+
+body : {
+  
+  "title": "MERN Stack Developer",
+  "description": "Looking for full-stack developer",
+  "expiresAt": "2025-07-15"
+}
+
+Response : 
+json 
+
+{
+  "_id": "684bcbd644de10c451d42549",
+  "title": "MERN Stack Developer",
+  "description": "Looking for full-stack developer",
+  "expiresAt": "2025-07-15T00:00:00.000Z",
+  "postedAt": "2025-06-13T06:57:26.642Z",
+}
+
+
+2 . get all jobs 
+
+Method : GET 
+URL example : http://localhost:3000/career/get-jobs 
+
+Response : 
+json 
+
+  [
+  {
+    "_id": "684bcb0343479a1bccc7c37c",
+    "title": "MERN Stack Developer",
+    "description": "Looking for full-stack developer",
+    "expiresAt": "2025-07-15T00:00:00.000Z",
+    "postedAt": "2025-06-13T06:53:55.697Z",
+    "__v": 0
+  },
+  {
+    "_id": "684bcbd644de10c451d42549",
+    "title": "MERN Stack Developer",
+    "description": "Looking for full-stack developer",
+    "expiresAt": "2025-07-15T00:00:00.000Z",
+    "postedAt": "2025-06-13T06:57:26.642Z",
+    "__v": 0
+  }
+]
+
+
+3 . update job 
+
+Method : PUT 
+URL example : http://localhost:3000/career/update-job/id 
+
+Request :
+json 
+
+Authorization : Bearer jwt_token_here 
+
+body {
+  "title": "MERN Stack Developer",
+  "description": "Looking for full-stack developer 6+ years experince",
+  "expiresAt": "2025-07-15"
+} 
+
+Response :
+json 
+
+{
+  "_id": "684bcb0343479a1bccc7c37c",
+  "title": "MERN Stack Developer",
+  "description": "Looking for full-stack developer 6+ years experince",
+  "expiresAt": "2025-07-15T00:00:00.000Z",
+  "postedAt": "2025-06-13T06:53:55.697Z",
+}
+
+4. delete job 
+Method : DELETE 
+URL example : http://localhost:3000/career/delete-job/id 
+
+Request : 
+json 
+
+Authorization : Bearer jwt_token_here 
+
+Response : 
+json 
+
+{
+  "message": "Job deleted successfully"
+}
+
+
+----------------------Environment variables---------------------- 
+
+MONGO_URI = "add your mongo uri"
 PORT = 3000
 JWT_SECRET = "add your secret code"

@@ -1,8 +1,9 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const adminRoutes = require('./routes/adminRoutes');
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const adminRoutes = require("./routes/adminRoutes");
+const careerRoutes = require("./routes/careerRoutes");
 
 dotenv.config();
 
@@ -11,20 +12,22 @@ const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
 // Middleware
-app.use(cors()); 
+app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(MONGO_URI)
+mongoose
+  .connect(MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.error("MongoDB connection error:", err));
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 // Routes
-app.use('/admin', adminRoutes);
+app.use("/admin", adminRoutes);
+app.use("/career", careerRoutes);
 
 // Check route using GET method
-app.get('/', (req, res) => {
-  res.send('API is running...');
+app.get("/", (req, res) => {
+  res.send("API is running...");
 });
 
 // Start server
